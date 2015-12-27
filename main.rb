@@ -7,7 +7,11 @@ get '/' do
 end
 
 get '/current/:zip' do
-  RestClient.get "http://api.openweathermap.org/data/2.5/weather?zip=#{params['zip']},us&APPID=08fae83301d137e1e675f3d83d8707d9", {:accept => :json}
+  json = RestClient.get "http://api.openweathermap.org/data/2.5/weather?zip=#{params['zip']},us&APPID=08fae83301d137e1e675f3d83d8707d9", {:accept => :json}
+  forecast = JSON.parse(json)
+
+  puts forecast
+
 end
 
 get '/fiveday/:zip' do
